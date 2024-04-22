@@ -47,7 +47,7 @@ RSpec.describe "Scientists show page" do
       experiment: @experiment1
     )
 
-    visit "scientists/#{@scientist1.id}"
+    visit scientist_path(@scientist1)
   end
 
   it "shows the scientist's information" do
@@ -86,7 +86,7 @@ RSpec.describe "Scientists show page" do
         click_button("remove")
       end
 
-      expect(page).to have_current_path("/scientists/#{@scientist1.id}")
+      expect(page).to have_current_path(scientist_path(@scientist1))
       expect(page).to_not have_content("Thin-Membrane Separations")
     end
 
@@ -95,7 +95,7 @@ RSpec.describe "Scientists show page" do
         click_button("remove")
       end
 
-      visit "scientists/#{@scientist2.id}"
+      visit scientist_path(@scientist2)
 
       expect(page).to have_content("Thin-Membrane Separations")
     end

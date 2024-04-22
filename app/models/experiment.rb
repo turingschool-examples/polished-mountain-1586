@@ -3,10 +3,10 @@ class Experiment < ApplicationRecord
   has_many :scientists, through: :scientist_experiments
 
   def scientist_experiment(scientist)
-    scientist_experiments.where("scientist_id = ?", scientist.id)[0]
+    scientist_experiments.find_by("scientist_id": scientist.id)
   end
 
   def self.long_running_experiments
-    where("experiments.num_months > 6").order("experiments.num_months DESC")
+    where("num_months > 6").order("num_months DESC")
   end
 end
