@@ -43,10 +43,4 @@ RSpec.describe "Scientist Show Page", type: :feature do
       expect(page).to have_content(@experiment1.name, count: 1)
     end
   end
-  
-  describe "US 3" do
-    it "" do
-      
-    end
-  end
 end

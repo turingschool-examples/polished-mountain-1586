@@ -6,6 +6,5 @@
     <ul>
       <% @scientist.experiments.each do |experiment|%>
       <li><%= experiment.name %> <%= button_to "Remove", remove_experiment_path(scientist_id: @scientist.id, experiment_id: experiment.id), method: :delete%></li>
-
       <% end %>
     </ul>
