@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Scientist Show Page", type: :feature do
-  before do
+  before :each do
     @lab = Lab.create!(name: 'Cool Lab')
 
     @marie_curie = Scientist.create!(name: 'Marie Curie', specialty: 'Radioactivity', university: 'University of Paris', lab: @lab)
