@@ -73,20 +73,20 @@ RSpec.describe "Scientist Show Page" do
 
     it "when I remove a scientist from an experiment, other scientist's on that experiment are unaffacted" do
       visit scientist_path(@scientist2)
-      save_and_open_page
+      
 
       expect(page).to have_content("Splitting the Atom")
 
       visit scientist_path(@scientist1)
-      save_and_open_page
+      
       
       within "#experiment-#{@experiment1.id}" do
         click_on "Remove from Experiment"
       end
-      save_and_open_page
+      
 
       visit scientist_path(@scientist2)
-      save_and_open_page
+      
       
       expect(page).to have_content("Splitting the Atom")
     end

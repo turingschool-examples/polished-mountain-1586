@@ -1,0 +1,7 @@
+<h1> All Experiments </h1>
+<ol> <li> <% @experiments.order_by_num_months.each do |experiment| %>
+  <b> <%= experiment.name %> </b>
+  <p> Description: <%= experiment.description %> </p>
+  <p> Experiment Length: <%= experiment.num_months %> months </p>
+  </li>
+<% end %> </ol>
