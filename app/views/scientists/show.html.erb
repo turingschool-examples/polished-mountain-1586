@@ -13,9 +13,7 @@
     <% @scientist.experiments.each do |experiment| %>
       <li id="experiment-<%= experiment.id %>">
         <div class="line-item-info"><%= experiment.name %></div>
-        <%= form_with url: "/scientist_experiments", method: :delete, class: "remove-form" do |form| %>
-          <%= form.hidden_field :scientist_id, value: @scientist.id %>
-          <%= form.hidden_field :experiment_id, value: experiment.id %>
+        <%= form_with url: "/scientist_experiments/#{experiment.scientist_experiment(@scientist).id}", method: :delete, class: "remove-form" do |form| %>
           <%= form.submit "remove" %>
         <% end %>
       </li>

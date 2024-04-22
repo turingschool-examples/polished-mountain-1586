@@ -8,4 +8,9 @@ Rails.application.routes.draw do
     :scientists,
     only: %i[show]
   )
+
+  resources(
+    :scientist_experiments,
+    only: %i[destroy]
+  )
 end
