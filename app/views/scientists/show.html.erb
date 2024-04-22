@@ -10,7 +10,7 @@
     <ul>
       <% @scientist.experiments.each do |experiment| %>
         <li><%= experiment.name %></li>
-        <p><%= button_to "Remove Experiment", scientist_experiment_path(@scientist, experiment), method: :delete %></p>
+        <p><%= button_to "Remove Experiment", scientist_experiment_path(@scientist, experiment), method: :delete, id: "remove-experiment#{experiment.id}"  %></p>
       <% end %>
     </ul>
   </div>

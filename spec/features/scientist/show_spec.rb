@@ -77,7 +77,7 @@ RSpec.describe 'scientist#show', type: :feature do
       # Then next to each experiment's name, I see a button to remove that experiment from that scientist's work load
       expect(page).to have_content("Remove Experiment")
       # When I click that button for one experiment
-      click_button("Remove Experiment")
+      click_button("Remove Experiment", match: :first)
       # I'm brought back to the scientist's show page
       expect(current_path).to eq(scientist_path(@scientist_1))
       # And I no longer see that experiment's name listed
