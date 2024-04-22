@@ -7,6 +7,7 @@
   <% @scientist.experiments.each do |experiment| %>
     <li>
       <h3>Experiment: <%=experiment.name%></h3>
+      <%= button_to "Delete #{experiment.name}", scientist_experiment_path(@scientist, experiment), method: :delete, data: { turbo: false } %>
     </li>
   <%end%>
 </div>
