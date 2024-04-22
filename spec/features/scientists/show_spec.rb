@@ -57,4 +57,14 @@ RSpec.describe "Scientists show page" do
       expect(page).to have_content("Gas-Phase Reaction Characterization")
     end
   end
+
+  it "has a button to remove an experiment from the scientist's work load" do
+    within "#experiment-#{@experiment1.id}" do
+      expect(page).to have_button("remove")
+    end
+
+    within "#experiment-#{@experiment2.id}" do
+      expect(page).to have_button("remove")
+    end
+  end
 end
