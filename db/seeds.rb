@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+@lab = Lab.create!(name: "Tampa Lab")
+@scientist = Scientist.create!(
+  name: "Luis",
+  specialty: "Numbers",
+  university: "Harvard",
+  lab_id: @lab.id
+)
+@experiment1 = Experiment.create!(
+  name: "Fire",
+  objective: "Test for fire",
+  num_months: 4
+)
+@experiment2 = Experiment.create!(
+  name: "Polution",
+  objective: "Test for polution",
+  num_months: 6
+)
+@experiment3 = Experiment.create!(
+  name: "Hello",
+  objective: "Test for Luis",
+  num_months: 6
+)
+
+@experiment_scientists_1 = ExperimentScientist.create!(experiment_id: @experiment1.id, scientist_id: @scientist.id)
+@experiment_scientists_2 = ExperimentScientist.create!(experiment_id: @experiment2.id, scientist_id: @scientist.id)

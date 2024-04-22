@@ -1,0 +1,16 @@
+<!-- app/views/scientists/show.html.erb -->
+<section class="scientist_attributes_and_lab">
+  <div id="scientist-<%= @scientist.id %>">
+    <h2><%= @scientist.name %></h2>
+    <p><strong>Specialty:</strong> <%= @scientist.specialty %></p>
+    <p><strong>University:</strong> <%= @scientist.university %></p>
+    <p><strong>Lab:</strong> <%= @scientist.lab.name %></p>
+  </div>
+</section>
+
+<h2>Experiments:</h2>
+<ul>
+  <% @scientist.experiments.each do |experiment| %>
+    <li><%= experiment.name %></li>
+  <% end %>
+</ul>
