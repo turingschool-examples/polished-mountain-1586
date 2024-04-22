@@ -6,9 +6,16 @@ RSpec.describe "Scientists show page" do
       name: "Falconer Lab"
     )
 
-    @scientist = Scientist.create!(
+    @scientist1 = Scientist.create!(
       name: "John Falconer",
       specialty: "Thermodynamics",
+      university: "University of Colorado Boulder",
+      lab: @laboratory
+    )
+
+    @scientist2 = Scientist.create!(
+      name: "Neil Hendren",
+      specialty: "Simulations",
       university: "University of Colorado Boulder",
       lab: @laboratory
     )
@@ -26,16 +33,21 @@ RSpec.describe "Scientists show page" do
     )
 
     ScientistExperiment.create!(
-      scientist: @scientist,
+      scientist: @scientist1,
       experiment: @experiment1
     )
 
     ScientistExperiment.create!(
-      scientist: @scientist,
+      scientist: @scientist1,
       experiment: @experiment2
     )
 
-    visit "scientists/#{@scientist.id}"
+    ScientistExperiment.create!(
+      scientist: @scientist2,
+      experiment: @experiment1
+    )
+
+    visit "scientists/#{@scientist1.id}"
   end
 
   it "shows the scientist's information" do
@@ -74,8 +86,18 @@ RSpec.describe "Scientists show page" do
         click_button("remove")
       end
 
-      expect(page).to have_current_path("/scientists/#{@scientist.id}")
+      expect(page).to have_current_path("/scientists/#{@scientist1.id}")
       expect(page).to_not have_content("Thin-Membrane Separations")
+    end
+
+    it "does not affect the experiments listed on another scientist's show page" do
+      within "#experiment-#{@experiment1.id}" do
+        click_button("remove")
+      end
+
+      visit "scientists/#{@scientist2.id}"
+
+      expect(page).to have_content("Thin-Membrane Separations")
     end
   end
 end
