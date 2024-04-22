@@ -12,7 +12,6 @@
       <li><p> <%= experiment.name %> </p></li>
 
         <%= form_with url: scientist_scientist_experiment_path(@scientist, experiment), method: :delete, data: {turbo: false} do |form| %>
-          <%= form.hidden_field :experiment_id, :value => experiment.id %>
           <%= form.submit "Remove Experiment" %>
         <% end %>
 
