@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Experiment do
+RSpec.describe "Experiment Index Page" do
   before :each do
     @lab = Lab.create!(name: 'Cool Lab')
 
@@ -20,16 +20,23 @@ RSpec.describe Experiment do
     ScientistExperiment.create!(scientist: @marie_curie, experiment: @laws_of_motion)
   end
 
-  describe 'relationships' do
-    it {should have_many :scientist_experiments}
-    it {should have_many(:scientists).through(:scientist_experiments)}
-  end
+  describe 'User story 3' do
+    it 'lists all the experiments' do
+      visit experiments_path
 
-  it "#long_running_experiments" do
-    expect(Experiment.long_running_experiments).to contain_exactly(@double_helix, @laws_of_motion)
-  end
+      expect(page).to have_content(@minerva.name)
+      expect(page).to have_content(@double_helix.name)
+      expect(page).to have_content(@laws_of_motion.name)
+    end
 
-  it "#names_in_descending_order" do
-    expect(Experiment.names_in_descending_order).to eq([@laws_of_motion.name, @double_helix.name, @minerva.name])
+    it 'sorts the experiments by those longer than 6 months by name length descending' do
+      visit experiments_path
+
+      within "#sorted-experiments" do
+        expect(@double_helix.name).to appear_before(@laws_of_motion.name)
+        expect(@laws_of_motion.name).to appear_before(@double_helix.name)
+        expect(page).to_not have_content(@minerva.name)
+      end
+    end
   end
 end
