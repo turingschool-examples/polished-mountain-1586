@@ -11,8 +11,13 @@
   <div class="section-header">Experiments this scientist is working on:</div>
   <ul class="information-list">
     <% @scientist.experiments.each do |experiment| %>
-      <li>
-        <%= experiment.name %>
+      <li id="experiment-<%= experiment.id %>">
+        <div class="line-item-info"><%= experiment.name %></div>
+        <%= form_with url: "/scientist_experiments", method: :delete, class: "remove-form" do |form| %>
+          <%= form.hidden_field :scientist_id, value: @scientist.id %>
+          <%= form.hidden_field :experiment_id, value: experiment.id %>
+          <%= form.submit "remove" %>
+        <% end %>
       </li>
     <% end %>
   </ul>
