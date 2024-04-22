@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Lab do
+RSpec.describe Experiment do
   it {should have_many :scientists}
-  it {should have_many :experiments}
 end
