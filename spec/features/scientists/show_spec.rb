@@ -25,6 +25,16 @@ RSpec.describe "Scientists show page" do
       num_months: 50
     )
 
+    ScientistExperiment.create!(
+      scientist: @scientist,
+      experiment: @experiment1
+    )
+
+    ScientistExperiment.create!(
+      scientist: @scientist,
+      experiment: @experiment2
+    )
+
     visit "scientists/#{@scientist.id}"
   end
 
