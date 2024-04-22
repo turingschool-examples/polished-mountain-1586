@@ -33,8 +33,8 @@ RSpec.describe "Experiment Index Page" do
       visit experiments_path
 
       within "#sorted-experiments" do
-        expect(@double_helix.name).to appear_before(@laws_of_motion.name)
         expect(@laws_of_motion.name).to appear_before(@double_helix.name)
+        expect(@double_helix.name).to_not appear_before(@laws_of_motion.name)
         expect(page).to_not have_content(@minerva.name)
       end
     end
