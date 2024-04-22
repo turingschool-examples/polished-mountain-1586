@@ -1,0 +1,15 @@
+<section class="scientist_info">
+  <h1> <%= @scientist.name %> Show Page </h1>
+  <p> Specializing in: <%= @scientist.specialty %> </p>
+  <p> Went to university at <%= @scientist.university %> </p>
+  <p> Currently works at <%= @scientist.lab.name %> </p>
+</section>
+
+<section class="experiment_info">
+  <h3> <%= @scientist.name %>'s Experiments </h3>
+  <ul>
+    <% @scientist.experiments.each do |experiment| %>
+    <li><p> <%= experiment.name %> </p></li>
+    <% end %>
+  </ul>
+</section>
