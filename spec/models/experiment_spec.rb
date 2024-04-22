@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Experiment do
   describe "relationships" do
     it {should have_many :scientists}
+    it {should have_many :scientist_experiments}
   end
 
   before(:each) do
