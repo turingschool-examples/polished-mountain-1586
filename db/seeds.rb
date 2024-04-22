@@ -14,10 +14,10 @@
 @grant = Scientist.create!(name: "Grant", specialty: "Chain Reactions", university: "University of Colorado Boulder", lab_id: @lab_2.id)
 @jared = Scientist.create!(name: "Jared", specialty: "Nuclear Fission", university: "Florida State University", lab_id: @lab_1.id)
 
-@teleportation = Experiment.create!(name: "Teleportation", objective: "This is the objective statement for the experiment", num_months: 20)
-@levitation = Experiment.create!(name: "Levitation", objective: "This is the objective statement for the experiment", num_months: 10)
-@time_travel = Experiment.create!(name: "Time Travel", objective: "This is the objective statement for the experiment", num_months: 6)
-@invisibility = Experiment.create!(name: "Invisibility", objective: "This is the objective statement for the experiment", num_months: 2)
+@teleportation = Experiment.create!(name: "Teleportation", objective: "The ability to jump from one place to another", num_months: 20)
+@levitation = Experiment.create!(name: "Levitation", objective: "The ability to float in mid-air", num_months: 10)
+@time_travel = Experiment.create!(name: "Time Travel", objective: "The ability to jump ahead or back in time", num_months: 6)
+@invisibility = Experiment.create!(name: "Invisibility", objective: "The ability to be blend into your surroundings", num_months: 2)
 
 ScientistExperiment.create!(scientist_id: @john.id, experiment_id: @teleportation.id)
 ScientistExperiment.create!(scientist_id: @john.id, experiment_id: @levitation.id)
