@@ -1,0 +1,19 @@
+<div class="page-header"><%= @scientist.name %></div>
+
+<div id="information">
+  <div class="section-header">Information about this scientist:</div>
+  <div class="information-item">Specialty: <%= @scientist.specialty %></div>
+  <div class="information-item">University: <%= @scientist.university %></div>
+  <div class="information-item">This scientist works in the <%= @scientist.lab.name %></div>
+</div>
+
+<div id="experiments">
+  <div class="section-header">Experiments this scientist is working on:</div>
+  <ul class="information-list">
+    <% @scientist.experiments.each do |experiment| %>
+      <li>
+        <%= experiment.name %>
+      </li>
+    <% end %>
+  </ul>
+</div>
