@@ -36,6 +36,7 @@ RSpec.describe "Scientist Show Page", type: :feature do
 
       click_button("Remove")
 
+      expect(current_path).to eq(scientist_path(@scientist1.id))
       expect(page).to_not have_content(@experiment1.name)
 
       visit scientist_path(@scientist2.id)

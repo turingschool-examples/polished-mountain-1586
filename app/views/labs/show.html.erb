@@ -1,8 +1,8 @@
 <h1><%= @lab.name %></h1>
 
 <ul>
-  <% @lab.scientist_with_experiment_counts.each do |scientist| %>
+  <% @lab.scientists_with_experiment_counts.each do |scientist| %>
     <li>
-      <strong><%= scientist.name %> - <%= scientist.experiment_count %> # of experiments</strong>
+      <strong><%= scientist.name %> - with <%= scientist.experiment_count %> experiments</strong>
     </li>  
   <% end %>

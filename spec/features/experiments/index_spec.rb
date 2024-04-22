@@ -26,7 +26,7 @@ RSpec.describe "Experiment Index Page", type: :feature do
     it "Vising the experiment index page shows all the long running experiments (longer than 6 months) and are in order of (longest to shortest)" do
       expect(page).to have_content(@experiment2.name)
       expect(page).to have_content(@experiment3.name)
-      save_and_open_page
+
       expect(page).to_not have_content(@experiment1.name)
       expect(page).to_not have_content(@experiment4.name)
     end
