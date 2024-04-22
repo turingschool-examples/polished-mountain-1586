@@ -4,7 +4,7 @@ class CreateExperiments < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :objective
       t.integer :num_months
-      t.references :scientists, null: false, foreign_key: true
+      t.references :scientist, null: false, foreign_key: true
 
       t.timestamps
     end
