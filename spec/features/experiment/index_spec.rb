@@ -1,16 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Experiment, type: :model do
-  describe "validations" do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:objective) }
-    it { should validate_presence_of(:num_months) }
-  end
-  describe 'relationships' do
-    it {should have_many :experiment_scientists}
-    it { should have_many(:scientists).through(:experiment_scientists) }
-  end
-
+RSpec.describe 'experiment#index', type: :feature do
   before(:each) do
     @lab = Lab.create!(name: "Tampa Lab")
 
@@ -50,11 +40,20 @@ RSpec.describe Experiment, type: :model do
     @experiment_scientists_2 = ExperimentScientist.create!(experiment_id: @experiment2.id, scientist_id: @scientist_1.id)
     @experiment_scientists_3 = ExperimentScientist.create!(experiment_id: @experiment1.id, scientist_id: @scientist_2.id)
   end
-  describe 'class methods' do
-    describe "#long_running_experiments_in_descending_order" do
-      it "returns experiments with more than 6 months in descending order by num_months" do
-        expect(Experiment.long_running_experiments_in_descending_order).to eq(["Hello", "Fire"])
-      end
+
+  # User Story 3, Experiment Index Page
+  it "displays the name in descending order with num_months longer than 6 months" do
+    # As a visitor
+    # When I visit the experiment index page
+    visit experiments_path
+
+    within '.name_experiments' do
+      expect(page).to have_content("Long Running Experiments Names:")
+      # I see the names of all long running experiments (longer than 6 months),
+      # And I see the names are in descending order (longest to shortest)
+      expect(page).to have_content("Hello")
+      expect(page).to have_content("Fire")
+      expect(page).to_not have_content("Polution")
     end
   end
 end

@@ -21,7 +21,7 @@ RSpec.describe 'scientist#show', type: :feature do
     @experiment1 = Experiment.create!(
       name: "Fire",
       objective: "Test for fire",
-      num_months: 4
+      num_months: 7
     )
 
     @experiment2 = Experiment.create!(
@@ -33,13 +33,12 @@ RSpec.describe 'scientist#show', type: :feature do
     @experiment3 = Experiment.create!(
       name: "Hello",
       objective: "Test for Luis",
-      num_months: 6
+      num_months: 8
     )
 
     @experiment_scientists_1 = ExperimentScientist.create!(experiment_id: @experiment1.id, scientist_id: @scientist_1.id)
     @experiment_scientists_2 = ExperimentScientist.create!(experiment_id: @experiment2.id, scientist_id: @scientist_1.id)
     @experiment_scientists_3 = ExperimentScientist.create!(experiment_id: @experiment1.id, scientist_id: @scientist_2.id)
-
   end
 
   # User Story 1, Scientist Show Page
@@ -51,17 +50,17 @@ RSpec.describe 'scientist#show', type: :feature do
     within '.scientist_attributes_and_lab' do
       within "#scientist-#{@scientist_1.id}" do
         # - name
-        expect(page).to have_content(@scientist_1.name)
+        expect(page).to have_content("Luis")
         # - specialty
-        expect(page).to have_content(@scientist_1.specialty)
+        expect(page).to have_content("Numbers")
         # - university where they got their degree
-        expect(page).to have_content(@scientist_1.university)
+        expect(page).to have_content("Harvard")
         # And I see the name of the lab where this scientist works
-        expect(page).to have_content(@lab.name)
+        expect(page).to have_content("Tampa Lab")
         # And I see the names of all of the experiments this scientist is running
-        expect(page).to have_content(@experiment1.name)
-        expect(page).to have_content(@experiment2.name)
-        expect(page).to_not have_content(@experiment3.name)
+        expect(page).to have_content("Fire")
+        expect(page).to have_content("Polution")
+        expect(page).to_not have_content("Hello")
       end
     end
   end
@@ -72,7 +71,7 @@ RSpec.describe 'scientist#show', type: :feature do
     # When I visit a scientist's show page
     visit scientist_path(@scientist_1)
 
-    expect(page).to have_content(@experiment1.name)
+    expect(page).to have_content("Fire")
     within "#scientist-#{@scientist_1.id}" do
       # Then next to each experiment's name, I see a button to remove that experiment from that scientist's work load
       expect(page).to have_content("Remove Experiment")
@@ -81,14 +80,14 @@ RSpec.describe 'scientist#show', type: :feature do
       # I'm brought back to the scientist's show page
       expect(current_path).to eq(scientist_path(@scientist_1))
       # And I no longer see that experiment's name listed
-      expect(page).to_not have_content(@experiment1.name)
+      expect(page).to_not have_content("Fire")
     end
 
+    # And when I visit a different scientist's show page that is working on that same experiment,
     visit scientist_path(@scientist_2)
     within "#scientist-#{@scientist_2.id}" do
-    # And when I visit a different scientist's show page that is working on that same experiment,
     # Then I see that the experiment is still on the other scientist's work load
-      expect(page).to have_content(@experiment1.name)
+      expect(page).to have_content("Fire")
     end
   end
 end

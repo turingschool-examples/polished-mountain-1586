@@ -24,7 +24,7 @@
 @experiment1 = Experiment.create!(
   name: "Fire",
   objective: "Test for fire",
-  num_months: 4
+  num_months: 7
 )
 
 @experiment2 = Experiment.create!(
@@ -36,10 +36,9 @@
 @experiment3 = Experiment.create!(
   name: "Hello",
   objective: "Test for Luis",
-  num_months: 6
+  num_months: 8
 )
 
 @experiment_scientists_1 = ExperimentScientist.create!(experiment_id: @experiment1.id, scientist_id: @scientist_1.id)
 @experiment_scientists_2 = ExperimentScientist.create!(experiment_id: @experiment2.id, scientist_id: @scientist_1.id)
 @experiment_scientists_3 = ExperimentScientist.create!(experiment_id: @experiment1.id, scientist_id: @scientist_2.id)
-

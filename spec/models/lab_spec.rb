@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Lab do
-  it {should have_many :scientists}
+  describe "validations" do
+    it { should validate_presence_of(:name) }
+  end
+  describe "relationships" do
+    it {should have_many :scientists}
+  end
 end
