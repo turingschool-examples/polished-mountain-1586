@@ -1,0 +1,6 @@
+<h1>Long Running Experiments</h1>
+<ul>
+  <% @experiments.long_running_experiments.each do |experiment| %>
+    <li><%= experiment.name %></li>
+  <% end %>
+</ul>
