@@ -18,4 +18,9 @@ Rails.application.routes.draw do
     :experiments,
     only: %i[index]
   )
+
+  resources(
+    :labs,
+    only: %i[show]
+  )
 end
