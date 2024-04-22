@@ -1,0 +1,11 @@
+<div class="page-header"><%= @lab.name %></div>
+<div id="scientists">
+  <ul class="information-list" id="scientists-list">
+    <% @scientists.each do |scientist| %>
+      <li id="scientist-<%= scientist.sci_id %>">
+        <div class="line-item-header">&ndash; <%= scientist.name %></div>
+        <div class="line-item-info">Number of Experiments: <%= scientist.experiment_count %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
