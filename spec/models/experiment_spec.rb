@@ -30,6 +30,6 @@ RSpec.describe Experiment do
   end
 
   it "#names_in_descending_order" do
-    expect(Experiment.names_in_descending_order).to eq([@laws_of_motion.name, @double_helix.name, @minerva.name])
+    expect(Experiment.names_in_descending_order).to eq([@double_helix.name, @laws_of_motion.name, @minerva.name])
   end
 end

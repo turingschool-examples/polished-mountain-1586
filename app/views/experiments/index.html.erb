@@ -1,11 +1,5 @@
 <h1>Experiments Index Page</h1>
 
-<% @experiments.each do |experiment| %>
-  <ol>
-    <li><%= experiment.name %></li>
-  </ol>
-<% end %>
-
 <div id="sorted-experiments">
   <h3>Experiments Sorted by Greater than 6 Months by Name Length</h3>
   <% @experiments_sorted_by_num_months.each do |experiment| %>

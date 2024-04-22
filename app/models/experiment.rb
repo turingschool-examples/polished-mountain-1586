@@ -10,6 +10,6 @@ class Experiment < ApplicationRecord
 
   # names are in descending order (longest to shortest)
   def self.names_in_descending_order
-    order('LENGTH(name) DESC').pluck(:name)
+    order('num_months DESC').pluck(:name)
   end
 end

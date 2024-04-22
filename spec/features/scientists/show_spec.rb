@@ -51,10 +51,13 @@ RSpec.describe "Scientist Show Page", type: :feature do
     expect(page).to have_content("MINERvA")
     expect(page).to have_content("Laws of Motion")
 
-    click_on "Remove #{@minerva.name}"
+    click_on "Remove MINERvA"
 
     expect(current_path).to eq(scientist_path(@marie_curie))
     expect(page).to_not have_content("MINERvA")
     expect(page).to have_content("Laws of Motion")
+
+    visit scientist_path(@richard_feynman)
+    expect(page).to have_content("MINERvA")
   end
 end
