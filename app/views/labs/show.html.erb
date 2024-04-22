@@ -1,0 +1,5 @@
+<h1> <%= @lab.name %> </h1>
+
+<% @lab.scientists.experiments_ordered.each do |scientist| %>
+  <%= scientist.name %>, number of experiments: <%= scientist.num_experiments %> 
+<% end %>
