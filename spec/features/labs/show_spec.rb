@@ -81,7 +81,7 @@ RSpec.describe "Lab Show Page" do
       experiment: @experiment4
     )
 
-    visit labs_path
+    visit lab_path(@laboratory)
   end
 
   it "shows the lab's name and all of the scientists in that lab" do
