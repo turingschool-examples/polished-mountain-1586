@@ -1,8 +1,4 @@
-class ScientistsController < ApplicationController
-  # def index
-  #   @scientist = Scientist.all
-  # end
-  
+class ScientistsController < ApplicationController 
   def show
     @scientist = Scientist.find(params[:id])
   end
