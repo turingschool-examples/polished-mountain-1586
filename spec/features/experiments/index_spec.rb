@@ -30,7 +30,7 @@ RSpec.describe "Experiments Index Page" do
   end
 
   it "list experiments longer than 6 months in descending order of number of months" do
-    within ".page-title" do
+    within ".page-header" do
       expect(page).to have_content("Scientific Experiments")
     end
 
