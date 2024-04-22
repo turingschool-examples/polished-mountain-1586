@@ -1,0 +1,7 @@
+<h1>All Experients worked on longer than 6 momths</h1>
+
+<% @experiments.desc_order_by_num_months.each do |experiment| %>
+    <li>
+      <h3>Experiment name: <%=experiment.name%></h3>
+    </li>
+<%end%>
