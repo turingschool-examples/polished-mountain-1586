@@ -1,12 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe Scientist do
-  describe "relationships" do
-    it {should belong_to :lab}
-    it {should have_many :scientist_experiments}
-    it {should have_many :experiments}
-  end
-
+RSpec.describe "Lab Show Page" do
   before(:each) do
     @lab1 = Lab.create!(name: "Fusion Lab")
     @lab2 = Lab.create!(name: "Fission Lab")
@@ -23,22 +17,37 @@ RSpec.describe Scientist do
     @experiment2.scientists << @scientist1
     @experiment2.scientists << @scientist3
     @experiment3.scientists << @scientist1
+
+    visit lab_path(@lab1)
   end
 
-  describe "instance methods" do
-    describe ".experiments_count" do
-      it "counts the number of experiments a scientist is on" do
-        expect(@scientist1.experiments_count).to eq 3
-        expect(@scientist2.experiments_count).to eq 1
-        expect(@scientist3.experiments_count).to eq 2
+  describe "Extension" do
+    it "displays the lab's name and the names of all scientists that work at this lab" do
+      save_and_open_page
+      expect(page).to have_content("Fusion Lab")
+      expect(page).to have_content("Dr. Atom")
+      expect(page).to have_content("Dr. Neutron")
+      expect(page).to have_content("Dr. Neutrino")
+      expect(page).to_not have_content("Dr. No")
+    end
+
+    it "next to each scientist, it displays the number of experiments associated with this scientist" do
+      within "#scientist-#{@scientist1.id}" do
+        expect(page).to have_content("Experiment Count: 3")
+      end
+
+      within "#scientist-#{@scientist2.id}" do
+        expect(page).to have_content("Experiment Count: 1")
+      end
+
+      within "#scientist-#{@scientist3.id}" do
+        expect(page).to have_content("Experiment Count: 2")
       end
     end
 
-    describe ".order_by_experiments" do
-      it "orders scientists by experiment count (most to least)" do
-        expected = [@scientist1, @scientist3, @scientist2]
-        expect(Scientist.order_by_experiments).to eq(expected)
-      end
+    it "displays the scientists ordered from most to least number of experiments" do
+      expect(@scientist1.name).to appear_before(@scientist3.name)
+      expect(@scientist3.name).to appear_before(@scientist2.name)
     end
   end
 end
