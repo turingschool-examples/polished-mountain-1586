@@ -12,6 +12,8 @@
 @scientist2 = @lab1.scientists.create!(name: "Dr. Neutron", specialty: "Neutrons", university: "Neutron University")
 @experiment1 = Experiment.create!(name: "Splitting the Atom", objective: "Split the atom", num_months: 12)
 @experiment2 = Experiment.create!(name: "Putting the Atom Back Together", objective: "Put the atom back together", num_months: 24)
+@experiment3 = Experiment.create!(name: "Super Glue", objective: "Make the world's strongest glue", num_months: 7)
+@experiment4 = Experiment.create!(name: "Super Duper Glue", objective: "Make the world's even stronger strongest glue", num_months: 3)
 @experiment1.scientists << @scientist1
 @experiment1.scientists << @scientist2
 @experiment2.scientists << @scientist1
