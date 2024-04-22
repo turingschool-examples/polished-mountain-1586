@@ -23,6 +23,7 @@ describe '.class methods' do
 
       expect(experiments.first.num_months).to be >= 6
       expect(experiments.order("num_months DESC").to_a).to eq(experiments)
+      # require 'pry'; binding.pry
     end
   end
 end

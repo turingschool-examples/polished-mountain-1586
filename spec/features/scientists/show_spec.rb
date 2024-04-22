@@ -24,8 +24,8 @@ RSpec.describe "Scientist show page" do
       expect(page).to have_content("Lab working at: #{scientist1.lab.name}")
       # And I see the names of all of the experiments this scientist is running
       within '.experiments' do
-        expect(page).to have_content("Experiment: #{scientist1.experiments.first.name}")
-        expect(page).to have_content("Experiment: #{scientist1.experiments.second.name}")
+        expect(page).to have_content("Experiment: #{experiment1.name}")
+        expect(page).to have_content("Experiment: #{experiment2.name}")
       end
     end
   end
@@ -58,7 +58,7 @@ RSpec.describe "Scientist show page" do
       # And I no longer see that experiment's name listed
       within '.experiments' do
         # Then next to each experiment's name, I see a button to remove that experiment from that scientist's work load
-        expect(page).to_not have_button("Delete #{experiment1.name}")
+        expect(page).to_not have_content(experiment1.name)
         expect(page).to have_button("Delete #{experiment2.name}")
         # When I click that button for one experiment
       end
@@ -66,7 +66,8 @@ RSpec.describe "Scientist show page" do
       visit scientist_path(scientist2)
       # Then I see that the experiment is still on the other scientist's work load
       within '.experiments' do
-        expect(page).to_not have_button("Delete #{experiment1.name}")
+        expect(page).to have_content(experiment1.name)
+        save_and_open_page
       end
     end
   end
