@@ -1,8 +1,8 @@
 class ExperimentScientistsController < ApplicationController
   def destroy
-    @scientist = Scientist.find(params[:id])
+    @scientist = Scientist.find(params[:scientist_id])
 
-    exp_sci = ExperimentScientist.find_by(scientist: @scientist, experiment: params[:experiment_id])
+    exp_sci = ExperimentScientist.find_by(scientist: @scientist, experiment: params[:id])
 
     exp_sci.delete
 
