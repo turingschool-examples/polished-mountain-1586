@@ -58,13 +58,24 @@ RSpec.describe "Scientists show page" do
     end
   end
 
-  it "has a button to remove an experiment from the scientist's work load" do
-    within "#experiment-#{@experiment1.id}" do
-      expect(page).to have_button("remove")
+  describe "#remove experiment" do
+    it "has a button to remove an experiment from the scientist's work load" do
+      within "#experiment-#{@experiment1.id}" do
+        expect(page).to have_button("remove")
+      end
+
+      within "#experiment-#{@experiment2.id}" do
+        expect(page).to have_button("remove")
+      end
     end
 
-    within "#experiment-#{@experiment2.id}" do
-      expect(page).to have_button("remove")
+    it "when I click the remove button it removes the experiment from the scientist" do
+      within "#experiment-#{@experiment1.id}" do
+        click_button("remove")
+      end
+
+      expect(page).to have_current_path("/scientists/#{@scientist.id}")
+      expect(page).to_not have_content("Thin-Membrane Separations")
     end
   end
 end
