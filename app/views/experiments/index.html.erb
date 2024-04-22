@@ -1,0 +1,10 @@
+<div class="page-title">Scientific Experiments</div>
+<div id="experiments">
+  <ul class="information-list" id="experiments-list">
+    <% @experiments.each do |experiment| %>
+      <li id="experiment-<%= experiment.id %>">
+        <div class="line-item-info"><%= experiment.name %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>

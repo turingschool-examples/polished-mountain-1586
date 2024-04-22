@@ -13,4 +13,9 @@ Rails.application.routes.draw do
     :scientist_experiments,
     only: %i[destroy]
   )
+
+  resources(
+    :experiments,
+    only: %i[index]
+  )
 end
