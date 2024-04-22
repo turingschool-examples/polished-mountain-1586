@@ -1,0 +1,20 @@
+<h1><%= @scientist.name %></h1>
+
+<ul>
+  <li>Specialty: <%= @scientist.specialty %></li>
+  <li>University: <%= @scientist.university %></li>
+  <li>Lab: <%= @scientist.lab.name %></li>
+</ul>
+
+<div id="scientist_experiments">
+  <ul>
+    <% @scientist.experiments.each do |experiment| %>
+      <div id="experiment_<%= experiment.id %>">
+        <li>
+          <%= experiment.name %>
+          <%= button_to 'Remove', experiment_scientist_path(@scientist), params: { experiment_id: experiment.id }, method: :delete, data: { turbo: false } %>
+        </li>
+      </div>
+    <% end %>
+  </ul>
+</div>
