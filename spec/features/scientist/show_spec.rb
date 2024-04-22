@@ -6,8 +6,11 @@ RSpec.describe "Scientist Show Page" do
     @lab2 = Lab.create!(name: "Fission Lab")
     @scientist1 = @lab1.scientists.create!(name: "Dr. Atom", specialty: "Atoms", university: "Atom University")
     @scientist2 = @lab1.scientists.create!(name: "Dr. Neutron", specialty: "Neutrons", university: "Neutron University")
-    @experiment1 = @scientist1.experiments.create!(name: "Splitting the Atom", objective: "Split the atom", num_months: 12)
-    @experiment2 = @scientist1.experiments.create!(name: "Putting the Atom Back Together", objective: "Put the atom back together", num_months: 24)
+    @experiment1 = Experiment.create!(name: "Splitting the Atom", objective: "Split the atom", num_months: 12)
+    @experiment2 = Experiment.create!(name: "Putting the Atom Back Together", objective: "Put the atom back together", num_months: 24)
+    @experiment1.scientists << @scientist1
+    @experiment1.scientists << @scientist2
+    @experiment2.scientists << @scientist1
 
     visit scientist_path(@scientist1)
   end
@@ -45,6 +48,47 @@ RSpec.describe "Scientist Show Page" do
           expect(page).to have_content("Length of Project: 24 months")
         end
       end
+    end
+  end
+
+  describe "User Story 2" do
+    it "displays a button to remove an experiment from a scientist, next to each experiment" do
+      within "#experiment-#{@experiment1.id}" do
+        expect(page).to have_button("Remove from Experiment")
+      end
+
+      within "#experiment-#{@experiment2.id}" do
+        expect(page).to have_button("Remove from Experiment")
+      end
+    end
+
+    it "when I click that button, I'm redirected to that scientist's show page, where I no longer see that experiment listed" do
+      within "#experiment-#{@experiment1.id}" do
+        click_on "Remove from Experiment"
+      end
+      
+      expect(current_path).to eq scientist_path(@scientist1)
+      expect(page).to_not have_content "Splitting the Atom"
+    end
+
+    it "when I remove a scientist from an experiment, other scientist's on that experiment are unaffacted" do
+      visit scientist_path(@scientist2)
+      save_and_open_page
+
+      expect(page).to have_content("Splitting the Atom")
+
+      visit scientist_path(@scientist1)
+      save_and_open_page
+      
+      within "#experiment-#{@experiment1.id}" do
+        click_on "Remove from Experiment"
+      end
+      save_and_open_page
+
+      visit scientist_path(@scientist2)
+      save_and_open_page
+      
+      expect(page).to have_content("Splitting the Atom")
     end
   end
 end

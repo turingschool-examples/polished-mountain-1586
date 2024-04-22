@@ -15,6 +15,7 @@
       <b> <%= experiment.name %> </b>
       <ul> <li> Objective: <%= experiment.objective %> </li>
       <li> Length of Project: <%= experiment.num_months %> months </li> </ul>
+      <%= button_to 'Remove from Experiment', scientist_experiment_path(@scientist, experiment_id: experiment), method: :delete %>
     </div>
   <% end %> 
 </section>
