@@ -3,7 +3,7 @@ class Experiment < ApplicationRecord
   has_many :scientists, through: :scientist_experiments
 
   def scientist_experiment(scientist)
-    scientist_experiments.where("scientist_id = ?", scientist.id)[0]
+    scientist_experiments.find_by("scientist_id": scientist.id)
   end
 
   def self.long_running_experiments
