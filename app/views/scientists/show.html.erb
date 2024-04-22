@@ -1,16 +1,17 @@
-<!-- app/views/scientists/show.html.erb -->
 <section class="scientist_attributes_and_lab">
   <div id="scientist-<%= @scientist.id %>">
     <h2><%= @scientist.name %></h2>
     <p><strong>Specialty:</strong> <%= @scientist.specialty %></p>
     <p><strong>University:</strong> <%= @scientist.university %></p>
+
     <p><strong>Lab:</strong> <%= @scientist.lab.name %></p>
+
+    <h2>Experiments:</h2>
+    <ul>
+      <% @scientist.experiments.each do |experiment| %>
+        <li><%= experiment.name %></li>
+        <p><%= button_to "Remove Experiment", scientist_experiment_path(@scientist, experiment), method: :delete %></p>
+      <% end %>
+    </ul>
   </div>
 </section>
-
-<h2>Experiments:</h2>
-<ul>
-  <% @scientist.experiments.each do |experiment| %>
-    <li><%= experiment.name %></li>
-  <% end %>
-</ul>
