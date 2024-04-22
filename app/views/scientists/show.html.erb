@@ -1,0 +1,17 @@
+<h1><%= @scientist.name %>'s Show Page</h1>
+
+<div id="scientist-info">
+  <p>Scientist Name: <%= @scientist.name %></p>
+  <p>Scientist Specialty: <%= @scientist.specialty %></p>
+  <p>University: <%= @scientist.university %></p>
+  <p>Lab: <%= @scientist.lab.name %></p>
+  </div>
+
+  <div id="scientist-experiments">
+    <% @experiments.each do |experiment| %>
+      <ol>
+        <li><%= experiment.name %> <%= button_to "Remove #{experiment.name}", scientist_experiment_path(@scientist, experiment), method: :delete, data: { turbo: false } %></li>
+      </ol>
+    <% end %>
+  </div>
+
