@@ -9,7 +9,13 @@
   <h3> <%= @scientist.name %>'s Experiments </h3>
   <ul>
     <% @scientist.experiments.each do |experiment| %>
-    <li><p> <%= experiment.name %> </p></li>
+      <li><p> <%= experiment.name %> </p></li>
+
+        <%= form_with url: scientist_scientist_experiment_path(@scientist, experiment), method: :delete, data: {turbo: false} do |form| %>
+          <%= form.hidden_field :experiment_id, :value => experiment.id %>
+          <%= form.submit "Remove Experiment" %>
+        <% end %>
+
     <% end %>
   </ul>
 </section>
