@@ -10,14 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_014930) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_151133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "experiments", force: :cascade do |t|
+    t.string "name"
+    t.string "objective"
+    t.integer "num_months"
+    t.bigint "scientist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["scientist_id"], name: "index_experiments_on_scientist_id"
+  end
 
   create_table "labs", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scientist_experiments", force: :cascade do |t|
+    t.bigint "scientist_id", null: false
+    t.bigint "experiment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experiment_id"], name: "index_scientist_experiments_on_experiment_id"
+    t.index ["scientist_id"], name: "index_scientist_experiments_on_scientist_id"
   end
 
   create_table "scientists", force: :cascade do |t|
@@ -27,8 +46,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_014930) do
     t.bigint "lab_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "experiment_id", null: false
+    t.index ["experiment_id"], name: "index_scientists_on_experiment_id"
     t.index ["lab_id"], name: "index_scientists_on_lab_id"
   end
 
+  add_foreign_key "experiments", "scientists"
+  add_foreign_key "scientist_experiments", "experiments"
+  add_foreign_key "scientist_experiments", "scientists"
+  add_foreign_key "scientists", "experiments"
   add_foreign_key "scientists", "labs"
 end
