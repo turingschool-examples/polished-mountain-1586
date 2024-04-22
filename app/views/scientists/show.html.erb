@@ -3,9 +3,12 @@
 Speialty: <%= @scientist.specialty %><br>
 University: <%= @scientist.university %><br>
 Lab Name: <%= @scientist.lab.name %><br>
-Experiments: 
+<h4>Experiments: </h4>
 <% @scientist.experiments.each do |experiment| %>
+<div id=<%="experiment-#{experiment.id}" %>>
 <ul>
   <%= experiment.name %>
+  <%= button_to "Remove #{experiment.name}", scientist_experiment_path(@scientist, experiment), method: :delete %> </p>
 </ul>
+</div>
 <% end %>
